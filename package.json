@@ -1,6 +1,6 @@
 {
   "name": "@jpex-js/node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/cjs/node.js",
   "module": "dist/es/node.js",
   "types": "dist/ts/index.d.ts",

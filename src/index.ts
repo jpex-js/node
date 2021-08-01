@@ -11,7 +11,7 @@ function provide<T>(jpex: Jpex, callback: (jpex: Jpex) => T): T;
 function provide<T>(callback: (jpex: Jpex) => T): T;
 function provide(...args: any[]) {
   const callback = args.pop();
-  const jpex = args.pop() ?? base.extend();
+  const jpex = args.pop() ?? getJpex().extend();
 
   return storage.run(jpex, () => callback(jpex));
 }

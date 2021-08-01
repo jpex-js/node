@@ -29,3 +29,39 @@ describe('when inside a specific provider', () => {
     expect(x).toBe(j);
   });
 });
+
+describe('when deepl nested', () => {
+  it('still like works and stuff', () => {
+    provide((jpex) => {
+      jpex.constant('foo', 'foo');
+      jpex.constant('bar', 'bar');
+      jpex.constant('baz', 'baz');
+
+      provide((jpex) => {
+        jpex.constant('bar', 'rab');
+
+        provide((jpex) => {
+          jpex.constant('baz', 'zab');
+
+          provide((jpex) => {
+            expect(jpex.resolve('foo')).toBe('foo');
+            expect(jpex.resolve('bar')).toBe('rab');
+            expect(jpex.resolve('baz')).toBe('zab');
+          });
+
+          expect(jpex.resolve('foo')).toBe('foo');
+          expect(jpex.resolve('bar')).toBe('rab');
+          expect(jpex.resolve('baz')).toBe('zab');
+        });
+
+        expect(jpex.resolve('foo')).toBe('foo');
+        expect(jpex.resolve('bar')).toBe('rab');
+        expect(jpex.resolve('baz')).toBe('baz');
+      });
+
+      expect(jpex.resolve('foo')).toBe('foo');
+      expect(jpex.resolve('bar')).toBe('bar');
+      expect(jpex.resolve('baz')).toBe('baz');
+    });
+  });
+});
