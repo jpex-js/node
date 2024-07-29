@@ -112,6 +112,24 @@ Returns the current jpex instance. If called outside of any `provide` context, i
 
 Resolve a dependency. Essentially the same as `jpex.resolve` except it uses the provided context.
 
+### resolveAsync
+
+```ts
+<T>(opts?: object): Promise<T>
+```
+
+### resolveWith
+
+```ts
+<T, ...rest>(with: any[]): T
+```
+
+### resolveAsyncWith
+
+```ts
+<T, ...rest>(with: any[]): Promise<T>
+```
+
 ### encase
 
 ```ts

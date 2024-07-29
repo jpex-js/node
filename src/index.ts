@@ -25,7 +25,20 @@ function resolve(name?: any, opts?: any) {
   return jpex.resolve(name, opts);
 }
 
-type Encase = typeof base.encase;
+const resolveAsync = ((name?: any, opts?: any) => {
+  const jpex = getJpex();
+  return jpex.resolveAsync(name, opts);
+}) as typeof base.resolveAsync;
+
+const resolveWith = ((name: string, namedDeps: any, opts?: any) => {
+  const jpex = getJpex();
+  return jpex.resolveWith(name, namedDeps, opts);
+}) as typeof base.resolveWith;
+
+const resolveAsyncWith = ((name: string, namedDeps: any, opts?: any) => {
+  const jpex = getJpex();
+  return jpex.resolveAsyncWith(name, namedDeps, opts);
+}) as typeof base.resolveAsyncWith;
 
 const encase = ((dependencies: string[], fn: (...args: any[]) => any) => {
   const encased = (...args: any[]) => {
@@ -36,6 +49,14 @@ const encase = ((dependencies: string[], fn: (...args: any[]) => any) => {
   };
   encased.encased = fn;
   return encased;
-}) as Encase;
+}) as typeof base.encase;
 
-export { getJpex, provide, resolve, encase };
+export {
+  getJpex,
+  provide,
+  resolve,
+  encase,
+  resolveWith,
+  resolveAsync,
+  resolveAsyncWith,
+};
