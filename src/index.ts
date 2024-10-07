@@ -51,11 +51,16 @@ const encase = ((dependencies: string[], fn: (...args: any[]) => any) => {
   return encased;
 }) as typeof base.encase;
 
+const defer = (name: string) => {
+  return encase([name], (fn) => fn);
+};
+
 export {
   getJpex,
   provide,
   resolve,
   encase,
+  defer,
   resolveWith,
   resolveAsync,
   resolveAsyncWith,
