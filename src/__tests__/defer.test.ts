@@ -7,7 +7,7 @@ jpex.factory(
   () => (str: string) => str.split('').reverse().join(''),
 );
 
-const reverse = defer('REVERSE');
+const reverse: any = defer('REVERSE');
 
 it('resolves root dependencies when the function is called', () => {
   const result = reverse('hello');
