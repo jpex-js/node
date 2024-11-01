@@ -41,6 +41,9 @@ const resolveAsyncWith = ((name: string, namedDeps: any, opts?: any) => {
 }) as typeof base.resolveAsyncWith;
 
 const encase = ((dependencies: string[], fn: (...args: any[]) => any) => {
+  // We do this purely to track the dependencies
+  getJpex().encase(dependencies, fn);
+
   const encased = (...args: any[]) => {
     const jpex = getJpex();
     const deps = dependencies.map((name) => jpex.resolve(name));
